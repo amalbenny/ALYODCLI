@@ -6,6 +6,14 @@ class Terminal:
     """Handles terminal interactions and environment configurations."""
     
     @staticmethod
+    def _running_in_idle() -> bool:
+        for stream in (sys.stdin, sys.stdout, sys.stderr):
+            module_name = getattr(stream.__class__, "__module__", "")
+            if module_name.startswith("idlelib"):
+                return True
+        return False
+
+    @staticmethod
     def _getch():
         """Cross-platform single character read for navigation."""
         if sys.platform == "win32":
@@ -29,6 +37,8 @@ class Terminal:
             return False
         if "FORCE_COLOR" in os.environ:
             return True
+        if Terminal._running_in_idle():
+            return False
         if not sys.stdout.isatty():
             return False
 
