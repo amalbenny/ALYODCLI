@@ -18,15 +18,11 @@ __all__ = [
 class Activate:
         
     """
-    # AlyodCLI
-    version: v0.1.1
-    <hr/>
-    
     Main interface tying all components together.
     Provides a cohesive API for building terminal applications.
 
     - Terminal: Handles terminal interactions and configurations.
-        - _check_support
+        - check_support
         - _getch
 
     - Style: Manages text styles and formatting options.
