@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alyodcli"
+version = "0.1.0"
+description = "A terminal text formatting and widget toolkit for Python CLIs"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE.txt" }
+authors = [
+  { name = "Amal Benny" }
+]
+keywords = ["cli", "terminal", "ansi", "text", "widgets"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Terminals"
+]
+
+[tool.setuptools]
+include-package-data = true
+py-modules = ["alyodcli"]
+
+[tool.setuptools.packages.find]
+include = ["ALYODCLI*", "alyodcli*"]
