@@ -35,7 +35,7 @@ A lowercase import alias is also provided:
 ```python
 from alyodcli import Activate
 ```
-
+<!--
 ## Publish to PyPI
 
 ```bash
@@ -44,7 +44,7 @@ python -m build
 python -m twine check dist/*
 python -m twine upload dist/*
 ```
-
+-->
 ## License
 
 Apache-2.0 (see LICENSE.txt)

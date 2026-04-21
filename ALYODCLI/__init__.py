@@ -4,7 +4,7 @@ from .text import Text
 from .layout import Layout
 from .widgets import Widgets
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = [
     "Activate",
     "Terminal",
@@ -19,7 +19,7 @@ class Activate:
         
     """
     # AlyodCLI
-    version: v0.1.0
+    version: v0.1.1
     <hr/>
     
     Main interface tying all components together.

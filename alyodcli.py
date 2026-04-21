@@ -1,4 +1,5 @@
-"""Lowercase compatibility import for ALYODCLI.
+"""
+Lowercase compatibility enabled for `import ALYODCLI`.
 
 This module lets users import the library as `alyodcli` while the main
 package directory remains `ALYODCLI`.
