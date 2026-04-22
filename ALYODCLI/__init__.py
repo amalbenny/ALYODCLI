@@ -3,10 +3,12 @@ from .style import Style
 from .text import Text
 from .layout import Layout
 from .widgets import Widgets
+from .gui import app as gui_app
 
 __version__ = "0.1.1"
 __all__ = [
     "Activate",
+    "gui_app",
     "Terminal",
     "Style",
     "Text",
@@ -58,3 +60,15 @@ class Activate:
     def paint(self, text: str, *styles: str) -> str:
         """Convenience method to apply styles directly from the main interface."""
         return self.style.paint(text, *styles)
+
+    def app(self, *args, **kwargs):
+        """Launches app UI using desktop GUI backends or terminal fallback.
+
+        - backend='auto' (default): Qt if available, else Tkinter
+        - backend='tkinter' or 'qt': desktop GUI
+        - backend='terminal': existing terminal app widget
+        """
+        backend = str(kwargs.pop("backend", "auto")).lower()
+        if backend in ("terminal", "cli"):
+            return self.widgets.app(*args, **kwargs)
+        return gui_app(*args, backend=backend, **kwargs)

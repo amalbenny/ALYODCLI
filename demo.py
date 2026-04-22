@@ -37,6 +37,37 @@ def main():
         
     print("\n" + cli.style.paint("Setup Complete!", "green", "bold"))
 
+    selected = cli.app(
+        pages={
+            "main": {
+                "title": "ALYODCLI Demo App",
+                "subtitle": "Desktop GUI with real clickable buttons",
+                "content": ["Use mouse clicks like a typical GUI app.", "Keyboard still works via focused buttons."],
+                "buttons": ["Run Report", "Show Stats", "Settings", "Exit"],
+                "actions": {
+                    "Run Report": lambda: print("\nRunning report..."),
+                    "Show Stats": lambda: print("\nStats loaded."),
+                },
+                "routes": {
+                    "Settings": "settings"
+                },
+            },
+            "settings": {
+                "title": "Settings",
+                "subtitle": "Qt/Tkinter style page routing",
+                "content": ["Set values here.", "Press Back to return."],
+                "buttons": ["Back", "Exit"],
+                "routes": {
+                    "Back": "main"
+                },
+            },
+        },
+        start_page="main",
+        backend="qt",
+        size="760x520",
+    )
+    print(f"\nSelected: {selected}")
+
 if __name__ == "__main__":
     main()
 
