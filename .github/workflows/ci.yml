@@ -58,8 +58,16 @@ jobs:
       - name: Build distribution
         run: python -m build
 
-      - name: Install built wheel
+      - name: Install built wheel (non-Windows)
+        if: runner.os != 'Windows'
         run: python -m pip install --force-reinstall dist/*.whl
+
+      - name: Install built wheel (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          $wheel = Get-ChildItem -Path dist -Filter *.whl | Select-Object -First 1
+          if (-not $wheel) { throw "No wheel found in dist/" }
+          python -m pip install --force-reinstall $wheel.FullName
 
       - name: Import smoke test (wheel)
         run: python -c "import ALYODCLI, alyodcli; from ALYODCLI import Activate; cli = Activate(); print(ALYODCLI.__version__); print(type(cli).__name__)"
