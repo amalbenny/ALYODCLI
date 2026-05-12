@@ -1,4 +1,5 @@
 import re
+import unicodedata
 from .style import Style
 # ---------------------------------------------------------
 # Text Component
@@ -12,7 +13,14 @@ class Text:
         self.style = style_manager
 
     def get_visual_len(self, text: str) -> int:
-        return len(self.ANSI_ESCAPE_RE.sub('', str(text)))
+        """Calculate visual length accounting for ANSI codes and wide characters (emojis, CJK)."""
+        text_no_ansi = self.ANSI_ESCAPE_RE.sub('', str(text))
+        visual_len = 0
+        for char in text_no_ansi:
+            # East Asian Wide and Fullwidth characters (emojis, CJK) take 2 columns
+            width_attr = unicodedata.east_asian_width(char)
+            visual_len += 2 if width_attr in ('W', 'F') else 1
+        return visual_len
 
     def align(self, text: str, width: int, align: str = 'left', *styles: str) -> str:
         text_str = str(text)
@@ -29,4 +37,3 @@ class Text:
             formatted = text_str + ' ' * pad
 
         return self.style.paint(formatted, *styles)
-

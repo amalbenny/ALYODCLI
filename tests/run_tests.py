@@ -35,7 +35,9 @@ def run_tests(cli):
     # 5. Test Navigation
     print(cli.style.paint("\nWidgets: Navigation", "bold"))
     print(cli.style.paint("Use Arrow Keys to move (Gaming and Vim naivagtion is also supported), Enter to select.", "dim"))
-    
+
+    cl= Activate()
+    cl.idle("This is a colored messege","builtin")
     try:
         choice = cli.widgets.navigation(["Start Server", "Deploy Database", "Run Diagnostics", "Exit"])
         print(f"\nYou selected: {cli.style.paint(choice, 'green', 'bold')}")

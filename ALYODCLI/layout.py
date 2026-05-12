@@ -18,11 +18,15 @@ class Layout:
         tl, tr, bl, br, hz, vt = "┌", "┐", "└", "┘", "─", "│"
         lines = content.split('\n') if isinstance(content, str) else content
 
-        output = [self.style.paint(f"{tl}{hz*(width+2)}{tr}", color)]
+        # Calculate the maximum visual length of all lines to handle emojis correctly
+        max_visual_len = max([self.text.get_visual_len(line) for line in lines] or [0])
+        actual_width = max(width, max_visual_len)
+
+        output = [self.style.paint(f"{tl}{hz*(actual_width+2)}{tr}", color)]
         side = self.style.paint(vt, color)
         for line in lines:
-            output.append(f"{side} {self.text.align(line, width, align)} {side}")
-        output.append(self.style.paint(f"{bl}{hz*(width+2)}{br}", color))
+            output.append(f"{side} {self.text.align(line, actual_width, align)} {side}")
+        output.append(self.style.paint(f"{bl}{hz*(actual_width+2)}{br}", color))
         
         print("\n".join(output))
         return "\n".join(output)
