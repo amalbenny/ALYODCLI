@@ -5,7 +5,7 @@ This module lets users import the library as `alyodcli` while the main
 package directory remains `ALYODCLI`.
 """
 
-from ALYODCLI import Activate, Layout, Style, Terminal, Text, Widgets, gui_app, __version__
+from ALYODCLI import Activate, Layout, Style, Terminal, Text, Widgets, __version__, help
 
 __all__ = [
     "Activate",
@@ -14,6 +14,6 @@ __all__ = [
     "Text",
     "Layout",
     "Widgets",
-    "gui_app",
+    "help",
     "__version__",
 ]
